@@ -116,7 +116,7 @@ export default function Home() {
             Where every trip start with a smile and
           </p>
           <p className="inline-block border-2 border-[#3bb3e3] rounded-full px-3 py-1">
-            <span className="text-yellow-400 font-medium text-3xl drop-shadow-[1px_1px_0_red] malvides">
+            <span className="text-yellow-200 font-medium text-3xl drop-shadow-[1px_1px_0_red] malvides">
               ends with a story.
             </span>
           </p>
@@ -167,7 +167,7 @@ export default function Home() {
           <div className="flex transition-transform duration-500 ease-in-out items-center"
             style={{ transform: `translateX(-${idx * cardWidth}px)` }}>
               {cards.map((card, index) => (
-              <div key={index} className="relative h-[350px] w-[250px] p-2 m-2 flex-shrink-0 transform transition-transform duration-300 hover:-translate-y-3 group">
+              <div key={index} className="relative h-[350px] w-[250px] p-2 m-2 flex-shrink-0 transform transition-transform duration-300 hover:-translate-y-3 group ">
                 <Image
                   src={card.img}
                   fill
@@ -176,7 +176,7 @@ export default function Home() {
                 />
                 {/* Bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/60 to-transparent rounded-b-2xl"></div>
-                <p className={`${playwrite.className} absolute font-bold left-1/2 -translate-x-1/2 bottom-10 text-white text-md  group-hover:bottom-18`}>
+                <p className={`absolute  left-1/2 -translate-x-1/2 bottom-10 text-white text-[22px]  group-hover:bottom-18 arthur-hill tracking-wider`}>
                   {card.title}
                 </p>
                 <button className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-8 bg-red-600 px-6 py-2 rounded-full  text-white font-semibold cursor-pointer text-[10px] hidden group-hover:block

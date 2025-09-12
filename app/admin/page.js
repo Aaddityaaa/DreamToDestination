@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ApiError } from "@/utils/ApiError";
+import Link from "next/link";
 
 
 export default function AdminPage() {
@@ -45,6 +46,9 @@ export default function AdminPage() {
     <div className="flex">
       {/* Sidebar */}
       <aside className="w-60 bg-gray-100 min-h-screen p-4">
+        <div className="logo px-3 inline-block">
+          <Link href="/"><Image src="/logo.png" width={70} height={70} alt='logo'/></Link>
+        </div>
         <ul className="flex flex-col gap-3 ml-2">
 
           <li

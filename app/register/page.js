@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google';
 import { ApiError } from '@/utils/ApiError';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -63,7 +64,11 @@ const register = () => {
 
     return (
             <div className='flex'>
-                <div className='bg-[#f8f9fa] h-[100vh] w-[30vw]'>
+                
+                <div className='bg-[#f8f9fa]  h-[100vh] w-[30vw]'>
+                <div className="logo px-3 inline-block">
+                    <Link href="/"><Image src="/logo.png" width={70} height={70} alt='logo'/></Link>
+                </div>
                 <div className='flex flex-col items-center justify-center h-full'>
                     <h2 className={`${poppins.className} text-2xl font-extrabold tracking-wider`}>Create an account</h2>
                     <p className='text-center text-gray-600 dark:text-gray-500'>Already have an account?{" "}
@@ -105,7 +110,8 @@ const register = () => {
                 </div>
             </div>
             <div className='relative h-[100vh] w-[70vw]'>
-                <Image src="/bg.avif" fill alt="Background image" className='absolute' />
+                <Image src="/bg-register.png" fill alt="Background image" className='absolute' 
+                style={{ objectFit: "cover" }} />
             </div>
             </div>
 

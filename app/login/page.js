@@ -4,11 +4,13 @@ import { useState } from 'react'
 import { Poppins } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { ApiError } from '@/utils/ApiError';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const poppins = Poppins({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700", "800"], // add weights you need
-});
+});    
 
 const Login = () => {
 
@@ -58,8 +60,11 @@ const Login = () => {
     const isFormValid = email.trim() !== "" && password.trim() !== "";
 
     return (
-        <>
+        <div className='flex'>
             <div className='bg-[#f8f9fa] h-[100vh] w-[30vw]'>
+                <div className="logo px-3 inline-block">
+                    <Link href="/"><Image src="/logo.png" width={70} height={70} alt='logo'/></Link>
+                </div>
                 <div className='flex flex-col items-center justify-center h-full'>
                     <h2 className={`${poppins.className} text-2xl font-extrabold tracking-wider`}>Sign in to your account</h2>
                     <p className='text-center text-gray-600 dark:text-gray-500'>Didn't have an account?{" "}
@@ -104,7 +109,11 @@ const Login = () => {
                     )}
                 </div>
             </div>
-        </>
+            <div className='relative h-[100vh] w-[70vw]'>
+                <Image src="/login-bg.png" fill alt="Background image" className='absolute'
+                style= {{objectFit: "cover"}} />
+            </div>
+        </div>
     )
 }
 

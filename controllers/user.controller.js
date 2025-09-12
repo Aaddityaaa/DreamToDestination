@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import connectDB from "@/db/index";
 import jwt from "jsonwebtoken";
 
-// Assuming connectDB is a simple function that connects to the database.
 connectDB();
 
 const registerUser = async (request) => {
@@ -16,6 +15,7 @@ const registerUser = async (request) => {
       return NextResponse.json(new ApiError(409, "All fields are required!"), { status: 409 });
     }
 
+    // check if user is already existed or not
     const existedUser = await User.findOne({ email });
 
     if (existedUser) {
@@ -87,11 +87,11 @@ const loginUser = async (request) => {
     // sign jwt token
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
-    // set token in HttpOnly cookies
+
     const response = NextResponse.json(
       new ApiResponse(200, { user: { id: user._id, username: user.username, email: user.email, role: user.role } }, "User  logged in successfully")
     )
-
+    // set token in HttpOnly cookies
     response.cookies.set("token",token, {
       httpOnly: true,
       secure: true,

@@ -33,11 +33,11 @@ export async function POST(req) {
     });
 
     try {
-        // Debug environment variables
-        console.log("Env vars in API route:");
-        console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
-        console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY ? "set" : "not set");
-        console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "set" : "not set");
+       
+        // console.log("Env vars in API route:");
+        // console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
+        // console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY ? "set" : "not set");
+        // console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "set" : "not set");
 
         // Read entire request body as buffer
         const reqBuffer = Buffer.from(await req.arrayBuffer());

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
@@ -61,7 +62,7 @@ const Footer = () => {
                     </ul>
                     </div>
                     <div className='flex flex-col items-center justify-center gap-5'>
-                        <button className='px-8 py-2 rounded-full cursor-pointer bg-red-400 '>Login</button>
+                        <Link href="/login"><button className='px-8 py-2 rounded-full cursor-pointer bg-red-400 '>Login</button></Link>
                         <p className='font-medium'>Can't wait to see you with us.</p>
                     </div>
                     <div className='bg-gray-800 absolute bottom-0 w-full h-[8vh] flex items-center justify-center cursor-not-allowed'>

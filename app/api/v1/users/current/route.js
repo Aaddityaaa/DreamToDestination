@@ -12,6 +12,7 @@ export async function GET(request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // console.log("Token from cookies:", token);
     const decoded = jwt.verify(token, JWT_SECRET);
     // console.log("Decoded JWT:", decoded);
     
