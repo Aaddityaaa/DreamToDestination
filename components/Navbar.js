@@ -58,7 +58,7 @@ const Navbar = () => {
       </div>
       <ul className='flex justify-center items-center'>
         <Link href="/"><li className={`hover:bg-[#c7cfda] hover:text-[#3bb3e3] px-3 py-1.5 rounded-lg font-medium text-lg ${pathName === "/" ? "text-[#3bb3e3]" : ""}`}>Home</li></Link>
-        <Link href="/"><li className={`hover:bg-[#c7cfda] hover:text-[#3bb3e3] px-3 py-1.5 rounded-lg font-medium text-lg ${pathName === "/explore" ? "text-[#3bb3e3]" : ""}`}>Explore</li></Link>
+        <Link href="/explore"><li className={`hover:bg-[#c7cfda] hover:text-[#3bb3e3] px-3 py-1.5 rounded-lg font-medium text-lg ${pathName === "/explore" ? "text-[#3bb3e3]" : ""}`}>Explore</li></Link>
         <Link href="/"><li className={`hover:bg-[#c7cfda] hover:text-[#3bb3e3] px-3 py-1.5 rounded-lg font-medium text-lg ${pathName === "/categories" ? "text-[#3bb3e3]" : ""}`}>Categories</li></Link>
         <Link href="/about"><li className={`hover:bg-[#c7cfda] hover:text-[#3bb3e3] px-3 py-1.5 rounded-lg font-medium text-lg ${pathName === "/about" ? "text-[#3bb3e3]" : ""}`}>About</li></Link>
         {
