@@ -48,7 +48,7 @@ const addDetails = async (request) => {
 
 const findDetail = async (request, {params}) => {
     try{
-        const { slug } = params;
+        const { slug } = await params;
 
         const detail = await Detail.findOne({ slug }).lean();
 
