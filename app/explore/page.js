@@ -4,12 +4,15 @@ import { useState, useEffect } from "react";
 import React from 'react'
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const poppins = Poppins({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700", "800"], // add weights you need
 });
 function Destinations() {
+
+    const router = useRouter();
 
     const [destinations, setDestinations] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,6 +26,7 @@ function Destinations() {
                 if (!res.ok) { throw new ApiError(400, "Failed to fetch destinations") }
 
                 const data = await res.json();
+                // console.log(data)
 
                 setDestinations(data.destinations);
             } catch (error) {
@@ -37,6 +41,11 @@ function Destinations() {
     console.log(destinations)
     if (loading) return <p>Loading destinations...</p>
     if (error) return <p className="text-red-600">Error: {error}</p>;
+
+    const handleDestination = (slug) => {
+        // console.log(`Clicked on destination: ${slug }`);
+        router.push(`/details/${slug}`)
+    }
 
     return (
         <div className="mb-10">
@@ -63,7 +72,7 @@ function Destinations() {
                                     <p className="text-[12px] font-medium text-gray-600">{destination.days}-days package</p>
                                 </div>
                                 <div>
-                                    <button className="bg-black text-white  px-3 py-1.5 rounded-full font-semibold cursor-pointer ">Details</button>
+                                    <button onClick={() => handleDestination(destination.slug)} className="bg-black text-white  px-3 py-1.5 rounded-full font-semibold cursor-pointer ">Details</button>
                                 </div>
                             </div>
                         </div>

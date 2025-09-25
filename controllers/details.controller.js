@@ -6,11 +6,11 @@ import connectDB from "@/db/index";
 
 const addDetails = async (request) => {
     try{
-        const {title,description, maxGroupSize, price, itinerary, includes, excludes,  packages, tripHighlights, importantNotes } = await request.json();
+        const {title,description,location, maxGroupSize, price, itinerary, includes, excludes,  packages, tripHighlights, importantNotes } = await request.json();
 
         if(
             !title || typeof title !== "string" || title.trim() === "" ||
-            !description || typeof description !== "string" || description.trim() === "" ||
+            !description || typeof description !== "string" || description.trim() === "" || location.trim() === "" ||
             maxGroupSize === undefined || maxGroupSize === null || typeof maxGroupSize !== "number" ||
             price === undefined || price === null || typeof price !== "number" ||
             !itinerary || !includes || !excludes || !packages || !tripHighlights || !importantNotes
@@ -23,6 +23,7 @@ const addDetails = async (request) => {
             description, 
             maxGroupSize, 
             price, 
+            location,
             itinerary, 
             includes, 
             excludes,  

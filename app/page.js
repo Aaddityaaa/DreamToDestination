@@ -115,7 +115,7 @@ export default function Home() {
            text-4xl tracking-wide drop-shadow-[2px_2px_0_pink] malvides">
             Where every trip start with a smile and
           </p>
-          <p className="inline-block border-2 border-[#3bb3e3] rounded-full px-3 py-1">
+          <p className="inline-block border-2 border-[#3bb3e3] rounded-full px-3 py-1 bg-black/50 ">
             <span className="text-yellow-200 font-medium text-3xl drop-shadow-[1px_1px_0_red] malvides">
               ends with a story.
             </span>

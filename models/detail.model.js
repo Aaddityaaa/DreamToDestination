@@ -19,6 +19,10 @@ const detailSchema = new Schema({
         type: Number,
         required: true,
     },
+    location: {
+        type: String,
+        required: true,
+    },
     itinerary: [
         {
             day: Number,
