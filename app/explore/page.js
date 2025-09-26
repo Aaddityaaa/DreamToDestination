@@ -5,6 +5,7 @@ import React from 'react'
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
+import WebsiteLoader from "@/components/Loader";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -32,20 +33,23 @@ function Destinations() {
             } catch (error) {
                 setError(error.message)
             } finally {
-                setLoading(false)
+                setTimeout(() => {
+                    setLoading(false)
+                }, 2000)
             }
         }
         fetchDestinations();
     }, [])
 
-    console.log(destinations)
-    if (loading) return <p>Loading destinations...</p>
-    if (error) return <p className="text-red-600">Error: {error}</p>;
-
     const handleDestination = (slug) => {
         // console.log(`Clicked on destination: ${slug }`);
         router.push(`/details/${slug}`)
     }
+
+    // console.log(destinations)
+    if (loading) return <WebsiteLoader isLoading={loading} />;
+    if (error) return <p className="text-red-600">Error: {error}</p>;
+
 
     return (
         <div className="mb-10">

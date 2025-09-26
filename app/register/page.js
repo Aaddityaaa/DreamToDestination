@@ -6,6 +6,7 @@ import { ApiError } from '@/utils/ApiError';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -44,6 +45,9 @@ const register = () => {
                 throw new ApiError(res.status, errorData.message || "Error while registering the user!");
             }
 
+            toast.success("Registration successful!",{
+                autoClose: 1000,
+            })
             setSuccess("Registration successful || Redirect to login...")
             setLoading(false)
             setEmail("")

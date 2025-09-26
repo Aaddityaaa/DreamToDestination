@@ -36,32 +36,25 @@
   color: white; /* text fill */
 }
 
+/* Blinking dots animation */
 @keyframes blink {
-  0%, 20% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
-  }
+  0%, 50% { opacity: 0.3; }  /* Dim */
+  51%, 100% { opacity: 1; }  /* Bright */
 }
-.blinking-dots span {
-  animation-name: blink;
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-left: 2px;
+
+/* Base class for dots */
+.loading-dot {
+  display: inline-block;
+  width: 0.5em;  /* Size of each dot */
+  height: 0.5em;
+  background-color: #111111;  /* Blue color - adjust to your theme (e.g., primary) */
+  border-radius: 50%;  /* Makes it a circle */
+  margin: 0 0.1em;  /* Space between dots */
+  animation: blink 1s ease-in-out infinite;  /* Blink speed: 1s cycle */
 }
-.blinking-dots span:nth-child(1) {
-  animation-delay: 0s;
-}
-.blinking-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.blinking-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+
+/* Sequential delays for each dot */
+.loading-dot:nth-child(1) { animation-delay: 0s; }      /* First dot */
+.loading-dot:nth-child(2) { animation-delay: 0.375s; } /* Second dot (25% delay) */
+.loading-dot:nth-child(3) { animation-delay: 0.75s; }  /* Third dot (50% delay) */
+.loading-dot:nth-child(4) { animation-delay: 1.125s; } /* Fourth dot (75% delay) */

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const Navbar = () => {
 
@@ -39,8 +40,11 @@ const Navbar = () => {
         const res = await fetch("api/v1/users/logout", {
           method: "POST"
         })
-
+              
         if(res.ok){
+          toast.success("Logout successful!",{
+            autoClose: 1000,
+          })
           setUser(null)
         }else{
           alert("failed to logout!")

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
 import { Playwrite_HU } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const playwrite = Playwrite_HU({
   subsets: ["latin"],
@@ -44,11 +45,16 @@ const images = {
 
 export default function Home() {
 
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/explore");
+  }
   const [currentIndex, setCurrentIndex] = useState(0)
   const [index, setIndex] = useState(0)
   const [idx, setIdx] = useState(0)
 
-  //Change image every 2 sec
+  //Changer => Change image every 2 sec
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % coverImages.length);
@@ -141,7 +147,7 @@ export default function Home() {
             <p className={`${poppins.className} font-extrabold text-2xl text-center text-yellow-300`}>{images[imageKeys[index]]}</p>
             <button onClick={handleNext} className="cursor-pointer"><img src="/section2/rightarrow.png" alt="" /></button>
           </div>
-          <button className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-25 bg-red-600 px-6 py-2.5 rounded-full  text-white font-semibold cursor-pointer text-sm`}>Discover more</button>
+          <button onClick={handleClick} className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-25 bg-red-600 px-6 py-2.5 rounded-full  text-white font-semibold cursor-pointer text-sm`}>Discover more</button>
         </div>
       </section>
       {/***************************************************/}
@@ -179,7 +185,7 @@ export default function Home() {
                 <p className={`absolute  left-1/2 -translate-x-1/2 bottom-10 text-white text-[22px]  group-hover:bottom-18 arthur-hill tracking-wider`}>
                   {card.title}
                 </p>
-                <button className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-8 bg-red-600 px-6 py-2 rounded-full  text-white font-semibold cursor-pointer text-[10px] hidden group-hover:block
+                <button onClick={handleClick} className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-8 bg-red-600 px-6 py-2 rounded-full  text-white font-semibold cursor-pointer text-[10px] hidden group-hover:block
                 `}>Explore</button>
               </div>
             ))}
@@ -194,7 +200,7 @@ export default function Home() {
             <img src="/section3/arrow-right.png" alt="Next" />
           </button>
         </div>
-        <button className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-5 bg-red-600 px-6 py-2.5 rounded-full  text-white font-semibold cursor-pointer text-sm`}>Discover more</button>
+        <button onClick={handleClick} className={`${poppins.className} absolute left-1/2 -translate-x-1/2 bottom-5 bg-red-600 px-6 py-2.5 rounded-full  text-white font-semibold cursor-pointer text-sm`}>Discover more</button>
       </section>
 
     </>

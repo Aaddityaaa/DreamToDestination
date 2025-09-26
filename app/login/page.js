@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ApiError } from '@/utils/ApiError';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -41,8 +42,10 @@ const Login = () => {
             if (!res.ok) {
                 throw new ApiError(res.status, data.message || "Error while logging in!");
             }
-
-            setSuccess("Login successfull || Redirecting...")
+            toast.success("Login successful!",{
+                autoClose: 1000,
+            })
+            setSuccess("Login successful || Redirecting...")
             setLoading(false)
             setEmail("")
             setPassword("")

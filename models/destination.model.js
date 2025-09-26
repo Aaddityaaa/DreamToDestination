@@ -38,7 +38,7 @@ const destinationSchema = new Schema(
     {timestamps: true}
 )
 
-// Pre-save hook to generate slug from title
+// Pre-validate hook to generate slug from title
 destinationSchema.pre('validate', function(next) {
     if (this.title && !this.slug) {
         this.slug = slugify(this.title, { lower: true, strict: true });

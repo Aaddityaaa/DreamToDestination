@@ -1,6 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import WebsiteLoader from '@/components/Loader';
+
 const Detail = () => {
     const params = useParams();
     const slug = params.slug;
@@ -33,7 +35,9 @@ const Detail = () => {
             } catch (error) {
                 setError(error.message);
             } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
             }
         }
         if (slug) {
@@ -49,7 +53,7 @@ const Detail = () => {
         
     }
 
-    if (loading) return (<div className='h-[50vh] flex justify-center items-center'><p>Loading detail...</p></div>)
+    if (loading) return <WebsiteLoader isLoading={loading} />;
     if (error) return <p className="text-red-600">Error: {error}</p>;
 
 

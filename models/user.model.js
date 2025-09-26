@@ -29,7 +29,7 @@ const userSchema = new Schema(
     {timestamps: true}
 )
 
-// This function encrypt the password before saving it to database
+// Encrypt the password before saving it to database
 userSchema.pre("save", async function (next){
     if(!this.isModified("password")) return next();
     try{
