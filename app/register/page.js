@@ -69,38 +69,61 @@ const register = () => {
     return (
             <div className='flex'>
                 
-                <div className='bg-[#f8f9fa]  h-[100vh] w-[30vw]'>
+                <div className='bg-[#f8f9fa]  h-[100vh] w-[30vw]' style={{ backgroundImage: 'url("/login-bg21.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="logo px-3 inline-block">
                     <Link href="/"><Image src="/logo.png" width={70} height={70} alt='logo'/></Link>
                 </div>
                 <div className='flex flex-col items-center justify-center h-full'>
-                    <h2 className={`${poppins.className} text-2xl font-extrabold tracking-wider`}>Create an account</h2>
-                    <p className='text-center text-gray-600 dark:text-gray-500'>Already have an account?{" "}
-                        <a href="/login" className='font-medium text-blue-600 hover:text-blue-400'>Sign in</a>
+                    <h2 className={`${poppins.className} text-gray-100 text-2xl font-extrabold tracking-wider`}>Create an account</h2>
+                    <p className='text-center text-gray-600 dark:text-gray-400'>Already have an account?{" "}
+                        <a href="/login" className='font-medium text-red-700 hover:text-red-400'>Sign in</a>
                     </p>
                     <form onSubmit={handleSubmit} className='mt-5'>
                         <div>
-                            <label htmlFor="username" className='block text-sm font-medium text-gray-800'>Username</label>
+                            <label htmlFor="username" className='block text-sm font-medium text-gray-300'>Username</label>
                             <div className='mt-1'>
-                                <input value={username} onChange={(e) => setUsername(e.target.value)} id='username' name='username' required type="text" className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none ' />
+                                <input 
+                                value={username} 
+                                onChange={(e) => setUsername(e.target.value)} 
+                                id='username' name='username' 
+                                required 
+                                type="text" 
+                                className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none text-gray-200' />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email" className='block text-sm font-medium text-gray-800'>Email address</label>
+                            <label htmlFor="email" className='block text-sm font-medium text-gray-300'>Email address</label>
                             <div className='mt-1'>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} id='email' name='email' required type="email" autoComplete='email' className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none ' />
+                                <input
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                id='email' 
+                                name='email' 
+                                required 
+                                type="email" 
+                                autoComplete='email' 
+                                className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none text-gray-200' />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="password" className='block text-sm font-medium text-gray-800'>Password</label>
+                            <label htmlFor="password" className='block text-sm font-medium text-gray-300'>Password</label>
                             <div className='mt-1'>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} id='password' name='password' required type="password" autoComplete='current-password' minLength={8} className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none ' />
+                                <input 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} 
+                                id='password' 
+                                name='password' 
+                                required
+                                type="password" 
+                                autoComplete='current-password' 
+                                minLength={8} 
+                                className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none text-gray-200' />
                             </div>
                         </div>
                         <div className='mt-3 w-full'>
                             <button type='submit' 
                             disabled={loading || !isFormValid}
-                             className={`w-full cursor-pointer flex justify-center py-2 px-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 ${loading || !isFormValid  ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`} >{loading ? "Registering..." : "Register"}</button>
+                             className={`w-full cursor-pointer flex justify-center py-2 px-4 text-sm font-medium text-white bg-gray-900 border border-transparent rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:opacity-80 ${loading || !isFormValid  ? "bg-gray-400 cursor-not-allowed" : "bg-pink-800 hover:bg-pink-600"}`} >{loading ? "Registering..." : "Register"}</button>
                         </div>
                     </form>
                     {error && (
