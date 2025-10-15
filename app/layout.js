@@ -3,6 +3,7 @@ import "./globals.css";
 import NavFooterHider from "@/components/NavFooterHider";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { AppProvider } from "./context/AppProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavFooterHider>
+        <AppProvider>
+          <NavFooterHider>
           {children}
           <ToastContainer />
         </NavFooterHider>
+        </AppProvider>
       </body>
     </html>
   );

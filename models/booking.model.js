@@ -15,9 +15,6 @@ const bookingSchema = new Schema({
     detailName: {
         type: String,
     },
-    detailInfo: {
-        type: String,
-    },
     status: {
         type: String,
         enum: ["pending","verified","booked","cancelled"],
@@ -62,11 +59,28 @@ const bookingSchema = new Schema({
         required: [true, "Email is required for booking."],
         unique: true,
     },
+    amount: {
+        type: Number,
+        // required: true,
+    },
+    razorpayPaymentId: {
+        type: String,
+    },
+    razorpayOrderId: {
+        type: String,
+    },
 },
 {
     timestamps: true,
     strict: 'throw',
 })
+bookingSchema.index(
+    {"createdAt" : 1},
+    {
+        expireAfterSeconds: 3600,
+        partialFilterExpression: { "status": "pending"},
+    }
+)
 
 const Booking = mongoose.models.Booking || mongoose.model("Booking", bookingSchema);
 

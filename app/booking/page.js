@@ -1,11 +1,11 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Link from 'next/link'
 import { Poppins } from 'next/font/google'
 import { ApiError } from '@/utils/ApiError'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-
+import { AppContext } from '../context/AppProvider'
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -15,13 +15,16 @@ const poppins = Poppins({
 const Booking = () => {
 
     const router = useRouter();
+    const { price,detailId, detailName } = useContext(AppContext)
+    // console.log("Price : ", price);
+    // console.log("DetailId : ",detailId)
+    // console.log("DetailName : ",detailName)
 
 
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [gender, setGender] = useState('')
     const [aadharCard, setAadharCard] = useState('')
-    const [detail, setDetail] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
@@ -39,7 +42,7 @@ const Booking = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ address, phoneNumber, aadharCard, gender, detail }),
+                body: JSON.stringify({ address, phoneNumber, aadharCard, gender, detailId, detailName }),
             })
 
             const data = await res.json()
@@ -55,7 +58,7 @@ const Booking = () => {
             setLoading(false)
             setAadharCard("")
             setAddress("")
-            setDetail("")
+            // setDetail("")
             setGender("")
             setPhoneNumber("")
 
@@ -148,14 +151,31 @@ const Booking = () => {
 
                     </div>
                     <div>
-                        <label htmlFor="detail" className='block text-sm font-medium text-gray-300'>Enter destination</label>
+                        <label htmlFor="detailId" className='block text-sm font-medium text-gray-300'>Detail id</label>
                         <div className='mt-1'>
                             <input
-                                value={detail}
-                                onChange={(e) => setDetail(e.target.value)}
-                                id='detail'
-                                name='detail'
-                                required
+                                value={detailId}
+                                // onChange={(e) => setDetail(e.target.value)}
+                                id='detailId'
+                                name='detailId'
+                                // required
+                                type="text"
+                                readOnly
+                                // pattern='[0-9]{12}'
+                                className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none text-gray-200' />
+                        </div>
+
+                    </div>
+                    <div>
+                        <label htmlFor="detailName" className='block text-sm font-medium text-gray-300'>Destination name</label>
+                        <div className='mt-1'>
+                            <input
+                                value={detailName}
+                                // onChange={(e) => setDetail(e.target.value)}
+                                id='detailName'
+                                name='detailName'
+                                readOnly
+                                // required
                                 type="text"
                                 // pattern='[0-9]{12}'
                                 className='block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none text-gray-200' />

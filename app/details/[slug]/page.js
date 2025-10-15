@@ -1,12 +1,19 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'next/navigation';
 import WebsiteLoader from '@/components/Loader';
+import { AppContext } from '@/app/context/AppProvider';
+import { useRouter } from 'next/navigation';
 
 const Detail = () => {
+
+    const router = useRouter();
+
     const params = useParams();
     const slug = params.slug;
     // console.log(slug)
+
+    const { setPrice, setDetailId, setDetailName } = useContext(AppContext)
 
     const [detail, setDetail] = useState({
         itinerary: [],
@@ -30,7 +37,9 @@ const Detail = () => {
                 }
                 const data = await res.json();
                 //   console.log("Data : " , data);
-
+                //   console.log(data.data._id)
+                setDetailId(data.data._id)
+                setDetailName(data.data.title)
                 setDetail(data.data)
             } catch (error) {
                 setError(error.message);
@@ -50,9 +59,15 @@ const Detail = () => {
         setSelectedPackageId(item._id)
         setSelectedPrice(item.price)
         // console.log("Clicked package: ", item);
-        
+
     }
 
+    const handleBooking = () => {
+        setPrice(selectedPrice)
+        setTimeout(() => {
+            router.push("/booking")
+        }, 1000);
+    }
     if (loading) return <WebsiteLoader isLoading={loading} />;
     if (error) return <p className="text-red-600">Error: {error}</p>;
 
@@ -167,8 +182,8 @@ const Detail = () => {
                     <div className="px-5">
                         <h2 className="text-xl poppins-black py-5">Tour options</h2>
                         {detail.packages.map((item) => (
-                            <div key={item._id} 
-                            onClick={() => handleClick(item)}
+                            <div key={item._id}
+                                onClick={() => handleClick(item)}
                                 className="border py-2 px-4 my-3 flex items-center justify-between rounded-lg cursor-pointer "
                                 style={{ backgroundColor: selectedPackageId === item._id ? 'lightyellow' : 'white', }}>
                                 <div className="font-semibold text-lg">{item.type}</div>
@@ -176,7 +191,10 @@ const Detail = () => {
                             </div>
                         ))}
 
-                        <button className="w-full py-3 mt-5 bg-black text-white rounded-full font-bold text-xl cursor-pointer hover:bg-[#5bc1d5] border-black border-2">
+                        <button
+                            onClick={handleBooking}
+                            disabled={!selectedPrice}
+                            className="w-full py-3 mt-5 bg-black text-white rounded-full font-bold text-xl cursor-pointer hover:bg-[#5bc1d5] border-black border-2">
                             Book Now
                         </button>
                     </div>
@@ -185,7 +203,7 @@ const Detail = () => {
                 </div>
             </div>
 
-         
+
         </div>
 
     );

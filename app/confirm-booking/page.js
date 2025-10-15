@@ -1,9 +1,10 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Poppins } from 'next/font/google'
 import { ApiError } from '@/utils/ApiError';
 import { toast } from 'react-toastify';
-
+import { AppContext } from '../context/AppProvider';
+import { useRouter } from 'next/navigation';
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -12,6 +13,12 @@ const poppins = Poppins({
 
 
 const confimBooking = () => {
+
+    const router = useRouter();
+    const { price, setBookingId } = useContext(AppContext)
+
+    // console.log("Price :", price)
+
     const [email, setEmail] = useState('')
     const [enteredOTP, setEnteredOTP] = useState('')
     const [loading, setLoading] = useState(false)
@@ -35,21 +42,26 @@ const confimBooking = () => {
             });
 
             const data = await res.json()
+            // console.log("Booking Id: ",data.data._id);
+            const bookingId = data.data._id;
 
             if (!res.ok) {
                 throw new ApiError(res.status, data.message || "Error while booking")
             }
+            setBookingId(bookingId);
 
-            toast.success("Booking Successfull!", {
+            toast.success("Booking Approved!", {
                 autoClose: 1000,
             })
 
-            setSuccess("Booking Successfull || Redirecting...")
+            setSuccess("Booking Approved || Redirecting...")
             setLoading(false)
             setEmail("")
             setEnteredOTP("")
 
-
+            setTimeout(() => {
+                router.push("/payment");
+            }, 2000);
 
         } catch (error) {
             setLoading(false)
